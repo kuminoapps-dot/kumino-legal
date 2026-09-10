@@ -18,26 +18,20 @@ nav a { color: #666; text-decoration: none; margin-left: 24px; font-size: 15px; 
 .hero h1 { font-size: 52px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
 .hero h1 span { color: #00875A; }
 .hero p { font-size: 20px; color: #555; max-width: 580px; margin: 0 auto 40px; line-height: 1.6; }
-.buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
-.btn { padding: 16px 32px; border-radius: 14px; font-size: 16px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.btn-dark { background: #1a1a1a; color: white; }
-.btn-green { background: #00875A; color: white; }
 
-/* HERO IMAGE PLACEHOLDER */
-.hero-image { 
-  max-width: 320px; 
+/* STORE BADGES */
+.buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 60px; }
+.badge { display: inline-block; line-height: 0; }
+.badge img { height: 52px; width: auto; display: block; }
+
+/* HERO IMAGE */
+.hero-image {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
   margin: 0 auto;
-  background: #e8f5ee;
   border-radius: 32px;
-  aspect-ratio: 9/19;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #00875A;
-  font-size: 14px;
-  font-weight: 600;
-  border: 2px dashed #00875A;
-  /* SOSTITUISCI CON: <img src="images/screenshot.png" ...> */
 }
 
 /* FEATURES */
@@ -51,7 +45,6 @@ nav a { color: #666; text-decoration: none; margin-left: 24px; font-size: 15px; 
   border-radius: 16px;
   display: flex; align-items: center; justify-content: center;
   font-size: 32px; margin-bottom: 20px;
-  /* SOSTITUISCI CON: <img src="images/icon-piano.png" ...> */
 }
 .feature h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
 .feature p { color: #666; line-height: 1.6; font-size: 16px; }
@@ -63,15 +56,12 @@ nav a { color: #666; text-decoration: none; margin-left: 24px; font-size: 15px; 
   display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
   max-width: 900px; margin: 0 auto;
 }
-.screenshot-placeholder {
+.screenshot {
+  display: block;
   width: 200px;
-  aspect-ratio: 9/19;
-  background: #e8f5ee;
+  max-width: 100%;
+  height: auto;
   border-radius: 24px;
-  border: 2px dashed #00875A;
-  display: flex; align-items: center; justify-content: center;
-  color: #00875A; font-size: 13px; font-weight: 600; text-align: center; padding: 16px;
-  /* SOSTITUISCI CON: <img src="images/screen1.png" ...> */
 }
 
 /* DOWNLOAD CTA */
@@ -83,15 +73,11 @@ nav a { color: #666; text-decoration: none; margin-left: 24px; font-size: 15px; 
 footer { text-align: center; padding: 40px; border-top: 1px solid #eee; color: #999; font-size: 14px; }
 footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
 
-/* LOGO PLACEHOLDER */
-.logo-img {
-  /* SOSTITUISCI CON: <img src="images/logo.png" height="32"> */
-}
-
 @media (max-width: 600px) {
   .hero h1 { font-size: 36px; }
   nav { padding: 16px 20px; }
   .features { padding: 60px 20px; }
+  .screenshots { padding: 60px 20px; }
 }
 </style>
 </head>
@@ -99,7 +85,7 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
 
 <!-- NAVBAR -->
 <nav>
-  <div class="logo logo-img">Kumino</div>
+  <div class="logo">Kumino</div>
   <div>
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Termini</a>
@@ -111,13 +97,14 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
   <h1>Non sai mai cosa<br><span>cucinare?</span></h1>
   <p>Kumino crea il tuo piano pasti settimanale personalizzato per il tuo supermercato e budget</p>
   <div class="buttons">
-    <a href="https://apps.apple.com/us/app/kumino/id6780402059" class="btn btn-dark">🍎 App Store</a>
-    <a href="https://play.google.com/store/apps/details?id=tv.academia.kumino" class="btn btn-green">▶ Google Play</a>
+    <a class="badge" href="https://apps.apple.com/it/app/kumino/id6780402059" target="_blank" rel="noopener">
+      <img src="images/badge-app-store.webp" width="3840" height="1284" alt="Scarica su App Store">
+    </a>
+    <a class="badge" href="https://play.google.com/store/apps/details?id=tv.academia.kumino" target="_blank" rel="noopener">
+      <img src="images/badge-google-play.webp" width="3840" height="1138" alt="Disponibile su Google Play">
+    </a>
   </div>
-  <!-- IMMAGINE HERO: sostituisci il div con <img src="images/screenshot-hero.png"> -->
-  <div class="hero-image">
-    📱 Screenshot app<br>qui
-  </div>
+  <img class="hero-image" src="images/hero-piano-settimanale.png" width="720" height="1558" alt="Schermata di Kumino con il piano pasti della settimana, il costo stimato e la lista della spesa">
 </section>
 
 <!-- FEATURES -->
@@ -125,19 +112,16 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
   <h2>Tutto quello che ti serve</h2>
   <div class="features-grid">
     <div class="feature">
-      <!-- ICONA: sostituisci con <img src="images/icon-piano.png"> -->
       <div class="feature-icon">🗓️</div>
       <h3>Piano pasti settimanale</h3>
       <p>Ricette personalizzate per il tuo supermercato e budget settimanale</p>
     </div>
     <div class="feature">
-      <!-- ICONA: sostituisci con <img src="images/icon-spesa.png"> -->
       <div class="feature-icon">🛒</div>
       <h3>Lista spesa automatica</h3>
       <p>La spesa pronta in un tap, senza sprechi e senza dimenticare niente</p>
     </div>
     <div class="feature">
-      <!-- ICONA: sostituisci con <img src="images/icon-social.png"> -->
       <div class="feature-icon">📱</div>
       <h3>Ricette dai social</h3>
       <p>Importa le tue ricette preferite da TikTok in un click</p>
@@ -149,12 +133,9 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
 <section class="screenshots">
   <h2>Scopri l'app</h2>
   <div class="screenshots-grid">
-    <!-- SOSTITUISCI con <img src="images/screen1.png" width="200" style="border-radius:24px"> -->
-    <div class="screenshot-placeholder">📱 Screenshot 1<br>Piano pasti</div>
-    <!-- SOSTITUISCI con <img src="images/screen2.png" width="200" style="border-radius:24px"> -->
-    <div class="screenshot-placeholder">📱 Screenshot 2<br>Lista spesa</div>
-    <!-- SOSTITUISCI con <img src="images/screen3.png" width="200" style="border-radius:24px"> -->
-    <div class="screenshot-placeholder">📱 Screenshot 3<br>Ricette</div>
+    <img class="screenshot" src="images/screen-scegli-piatti.png" width="720" height="1558" alt="Scegli i piatti che ami: scorri le ricette e Kumino impara i tuoi gusti">
+    <img class="screenshot" src="images/screen-meno-pensieri.png" width="720" height="1558" alt="Meno pensieri, più gusto: da 20 minuti a 30 secondi per pianificare la settimana">
+    <img class="screenshot" src="images/screen-recensioni.png" width="720" height="1558" alt="Oltre 24.000 download e recensioni a cinque stelle degli utenti italiani">
   </div>
 </section>
 
@@ -163,8 +144,12 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
   <h2>Inizia gratis oggi</h2>
   <p>7 giorni di prova gratuita, poi €3,99/mese</p>
   <div class="buttons">
-    <a href="https://apps.apple.com/us/app/kumino/id6780402059" class="btn btn-dark">🍎 Scarica su App Store</a>
-    <a href="https://play.google.com/store/apps/details?id=tv.academia.kumino" class="btn btn-green">▶ Scarica su Google Play</a>
+    <a class="badge" href="https://apps.apple.com/it/app/kumino/id6780402059" target="_blank" rel="noopener">
+      <img src="images/badge-app-store.webp" width="3840" height="1284" alt="Scarica su App Store">
+    </a>
+    <a class="badge" href="https://play.google.com/store/apps/details?id=tv.academia.kumino" target="_blank" rel="noopener">
+      <img src="images/badge-google-play.webp" width="3840" height="1138" alt="Disponibile su Google Play">
+    </a>
   </div>
 </section>
 
