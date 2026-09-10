@@ -6,6 +6,7 @@
 <title>Kumino — Piano pasti settimanale</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; }
 
 /* NAVBAR */
@@ -69,6 +70,12 @@ nav a { color: #666; text-decoration: none; margin-left: 24px; font-size: 15px; 
 .cta h2 { font-size: 40px; font-weight: 800; margin-bottom: 16px; }
 .cta p { font-size: 18px; color: #666; margin-bottom: 40px; }
 
+/* CONTATTI */
+.contatti { text-align: center; padding: 80px 40px; background: #f0faf5; scroll-margin-top: 24px; }
+.contatti h2 { font-size: 36px; font-weight: 800; margin-bottom: 14px; }
+.contatti p { font-size: 18px; color: #555; max-width: 520px; margin: 0 auto 28px; line-height: 1.6; }
+.contatti-mail { display: inline-block; font-size: 20px; font-weight: 700; color: #00875A; text-decoration: none; border-bottom: 2px solid #00875A; padding-bottom: 3px; }
+
 /* FOOTER */
 footer { text-align: center; padding: 40px; border-top: 1px solid #eee; color: #999; font-size: 14px; }
 footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
@@ -87,8 +94,7 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
 <nav>
   <div class="logo">Kumino</div>
   <div>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Termini</a>
+    <a href="#contatti">Contatti</a>
   </div>
 </nav>
 
@@ -150,6 +156,13 @@ footer a { color: #00875A; text-decoration: none; margin: 0 12px; }
       <img src="images/badge-google-play.webp" width="3840" height="1138" alt="Disponibile su Google Play">
     </a>
   </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="contatti" id="contatti">
+  <h2>Contatti</h2>
+  <p>Hai una domanda, un problema con l'abbonamento o un'idea per una nuova funzione? Scrivici, ti rispondiamo.</p>
+  <a class="contatti-mail" href="mailto:kumino.apps@gmail.com">kumino.apps@gmail.com</a>
 </section>
 
 <!-- FOOTER -->
