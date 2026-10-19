@@ -9,9 +9,10 @@
 window.KUMINO_CONFIG = {
   API_BASE: 'https://kumino-api-server.onrender.com',
   GOOGLE_CLIENT_ID: '832653863241-tlpoguqs6mdnga5t37oui9kh044s0avi.apps.googleusercontent.com',
-  // false: il pulsante Apple è nascosto e lo script Apple non viene caricato.
+  // false: il pulsante Apple è nascosto e lo script Apple non viene caricato,
+  // a meno che l'URL contenga ?apple=1 (prova prima dell'attivazione per tutti).
   APPLE_ENABLED: false,
-  APPLE_CLIENT_ID: 'APPLE_SERVICES_ID_PLACEHOLDER',
+  APPLE_CLIENT_ID: 'com.kumino.app.web',
   // Deve essere registrato tra i Return URLs del Services ID su Apple Developer.
   APPLE_REDIRECT_URI: 'https://kumino.app/riscatta.html'
 };
@@ -201,7 +202,9 @@ footer a { color: #00875A; text-decoration: none; margin: 0 8px; }
 <script>
 (function () {
   var CONFIG = window.KUMINO_CONFIG;
-  var MOCK = new URLSearchParams(location.search).get('mock') === '1';
+  var PARAMS = new URLSearchParams(location.search);
+  var MOCK = PARAMS.get('mock') === '1';
+  var APPLE = CONFIG.APPLE_ENABLED || PARAMS.get('apple') === '1';
   var PROVIDER_NAMES = { google: 'Google', apple: 'Apple' };
   var GENERIC_ERROR = 'Si è verificato un errore. Riprova tra qualche minuto.';
   var NETWORK_ERROR = 'Impossibile contattare il server. Controlla la connessione e riprova.';
@@ -290,7 +293,7 @@ footer a { color: #00875A; text-decoration: none; margin: 0 8px; }
       script.onload = function () {
         AppleID.auth.init({
           clientId: CONFIG.APPLE_CLIENT_ID,
-          scope: 'email',
+          scope: 'name email',
           redirectURI: CONFIG.APPLE_REDIRECT_URI,
           usePopup: true
         });
@@ -433,13 +436,13 @@ footer a { color: #00875A; text-decoration: none; margin: 0 8px; }
       });
   });
 
-  if (!CONFIG.APPLE_ENABLED) $('apple-slot').classList.add('hidden');
+  if (!APPLE) $('apple-slot').classList.add('hidden');
 
   if (MOCK) {
     setupMockLogin();
   } else {
     setupGoogle();
-    if (CONFIG.APPLE_ENABLED) setupApple();
+    if (APPLE) setupApple();
   }
 })();
 </script>
