@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regala un anno di Kumino · Gift card</title>
+<meta name="description" content="Regala un anno di Kumino Premium: piano pasti settimanale, lista della spesa automatica e ricette. 29,99 €, una tantum, nessun rinnovo.">
+<script>
+window.KUMINO_CONFIG = {
+  API_BASE: 'https://kumino-api-server.onrender.com'
+};
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; background: #ffffff; }
+
+/* NAVBAR */
+nav { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+.logo { font-size: 26px; font-weight: 800; color: #00875A; letter-spacing: -1px; text-decoration: none; }
+nav a.contact { color: #666; text-decoration: none; margin-left: 24px; font-size: 15px; }
+
+/* MAIN */
+main { background: linear-gradient(180deg, #f0faf5 0%, #ffffff 100%); padding: 40px 16px 64px; min-height: 70vh; }
+.wrap { max-width: 440px; margin: 0 auto; }
+h1 { font-size: 32px; font-weight: 800; line-height: 1.15; text-align: center; margin-bottom: 12px; }
+h1 span { color: #00875A; }
+.lead { font-size: 17px; color: #555; text-align: center; line-height: 1.5; margin-bottom: 32px; }
+
+.card { background: #fff; border-radius: 20px; padding: 24px 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,135,90,0.08); margin-bottom: 20px; }
+.card h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+.hidden { display: none !important; }
+
+.notice { background: #fff8e6; border: 1px solid #f5d98b; border-radius: 12px; padding: 12px 14px; font-size: 15px; line-height: 1.5; color: #5c4400; margin-bottom: 20px; }
+
+/* PREZZO E INCLUSO */
+.price { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.price strong { font-size: 34px; font-weight: 800; color: #00875A; letter-spacing: -0.5px; }
+.price span { font-size: 15px; color: #666; }
+.checks { list-style: none; }
+.checks li { position: relative; padding: 0 0 12px 32px; font-size: 16px; line-height: 1.5; }
+.checks li:last-child { padding-bottom: 0; }
+.checks li::before {
+  content: ''; position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%;
+  background: #e8f5ee url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%2300875A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' d='M6 12.5l4 4L18 8'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+/* PASSI */
+.steps { list-style: none; counter-reset: step; }
+.steps li { counter-increment: step; position: relative; padding: 0 0 20px 44px; font-size: 16px; line-height: 1.5; }
+.steps li:last-child { padding-bottom: 0; }
+.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%;
+  background: #00875A; color: #fff; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center;
+}
+.steps a, .faq a, .small-notes a { color: #00875A; font-weight: 600; text-decoration: none; }
+.buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.badge { display: inline-block; line-height: 0; }
+.badge img { height: 40px; width: auto; display: block; }
+
+/* FORM */
+label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+label .opt { font-weight: 400; color: #888; }
+.field { margin-bottom: 18px; }
+.text-input, .text-area {
+  width: 100%; border: 2px solid #dfe3e6; border-radius: 12px; padding: 12px 14px;
+  font: 400 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff;
+}
+.text-input { height: 52px; }
+.text-area { min-height: 112px; resize: vertical; line-height: 1.45; }
+.text-input::placeholder, .text-area::placeholder { color: #b5bbc0; }
+.text-input:focus, .text-area:focus { outline: none; border-color: #00875A; }
+.counter { font-size: 13px; color: #888; margin-top: 6px; text-align: right; }
+.counter.full { color: #a50e0e; }
+.btn-primary {
+  width: 100%; height: 52px; border: 0; border-radius: 26px; background: #00875A; color: #fff;
+  font-size: 17px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-primary:disabled { background: #8fc9b3; cursor: default; }
+.spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,0.45); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.pay-note { font-size: 13px; color: #888; text-align: center; margin-top: 10px; line-height: 1.5; }
+.error { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: #fdecea; color: #a50e0e; font-size: 15px; line-height: 1.5; }
+
+/* BANNER ANNULLATO */
+.banner { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 12px 14px; margin-bottom: 20px; border-radius: 12px; background: #f9fafb; border: 1px solid #e6e8eb; color: #444; font-size: 15px; line-height: 1.5; }
+.banner button { flex: none; background: none; border: 0; color: #888; font-size: 20px; line-height: 1; cursor: pointer; padding: 0 2px; }
+
+/* FAQ */
+.faq details { border-top: 1px solid #eee; }
+.faq details:first-of-type { border-top: 0; }
+.faq summary { list-style: none; cursor: pointer; padding: 14px 28px 14px 0; font-size: 16px; font-weight: 600; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; position: absolute; right: 2px; top: 11px; font-size: 22px; font-weight: 400; color: #00875A; }
+.faq details[open] summary::after { content: '\2212'; }
+.faq details p { padding: 0 0 16px; font-size: 15px; color: #555; line-height: 1.6; }
+
+.small-notes { font-size: 13px; color: #888; text-align: center; line-height: 1.8; }
+
+.mock-banner { max-width: 440px; margin: 0 auto 20px; padding: 10px 14px; border-radius: 12px; background: #eef2ff; color: #3730a3; font-size: 13px; line-height: 1.5; }
+.mock-banner code { font-weight: 700; }
+
+/* FOOTER */
+footer { text-align: center; padding: 32px 16px; border-top: 1px solid #eee; color: #999; font-size: 14px; line-height: 2; }
+footer a { color: #00875A; text-decoration: none; margin: 0 8px; }
+
+@media (min-width: 601px) {
+  nav { padding: 20px 40px; }
+  main { padding-top: 72px; }
+  h1 { font-size: 40px; }
+  .card { padding: 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Kumino</a>
+  <div>
+    <a class="contact" href="mailto:kumino.apps@gmail.com">Contatti</a>
+  </div>
+</nav>
+
+<main>
+  <div id="mock-banner" class="mock-banner hidden">
+    Modalità test: il pagamento è simulato. Aggiungi <code>&amp;annullato=1</code> per il pagamento annullato,
+    <code>&amp;shop=off</code> per la vendita chiusa. Scrivi <code>RETE</code> come nome per simulare un errore di rete.
+  </div>
+
+  <div class="wrap">
+    <h1>Regala un anno di <span>Kumino</span></h1>
+    <p class="lead">Il piano pasti settimanale personalizzato per il suo supermercato e budget, la lista della spesa pronta in un tap e le ricette preferite importate da TikTok.</p>
+
+    <!-- COSA INCLUDE -->
+    <section class="card">
+      <h2>Cosa include</h2>
+      <div class="price"><strong>29,99 €</strong><span>una tantum</span></div>
+      <ul class="checks">
+        <li><strong>1 anno di Kumino Premium</strong></li>
+        <li>Su iPhone e Android</li>
+        <li>Nessun rinnovo automatico</li>
+        <li>Vale finché non viene riscattato</li>
+      </ul>
+      <div class="buttons">
+        <a class="badge" href="https://apps.apple.com/it/app/kumino/id6780402059" target="_blank" rel="noopener">
+          <img src="images/badge-app-store.webp" width="3840" height="1284" alt="Scarica su App Store">
+        </a>
+        <a class="badge" href="https://play.google.com/store/apps/details?id=tv.academia.kumino" target="_blank" rel="noopener">
+          <img src="images/badge-google-play.webp" width="3840" height="1138" alt="Disponibile su Google Play">
+        </a>
+      </div>
+    </section>
+
+    <!-- COME FUNZIONA -->
+    <section class="card">
+      <h2>Come funziona</h2>
+      <ol class="steps">
+        <li>Acquisti la gift card</li>
+        <li>Ricevi il codice per email e lo mandi a chi vuoi (WhatsApp, email…)</li>
+        <li>Chi lo riceve lo riscatta su <a href="riscatta.html">kumino.app/riscatta</a> e apre Kumino</li>
+      </ol>
+    </section>
+
+    <!-- MODULO -->
+    <section class="card" id="acquista">
+      <h2>Prepara il tuo regalo</h2>
+      <div id="cancel-banner" class="banner hidden" role="status">
+        <span>Pagamento annullato, puoi riprovare quando vuoi.</span>
+        <button id="cancel-close" type="button" aria-label="Chiudi">×</button>
+      </div>
+      <p id="shop-closed" class="notice hidden">La vendita delle gift card apre a breve.</p>
+      <form id="gift-form" novalidate>
+        <div class="field">
+          <label for="recipient">Per chi è? <span class="opt">(facoltativo)</span></label>
+          <input id="recipient" class="text-input" name="recipientName" type="text" maxlength="60" autocomplete="off" placeholder="Es. Giulia">
+        </div>
+        <div class="field">
+          <label for="message">Messaggio <span class="opt">(facoltativo)</span></label>
+          <textarea id="message" class="text-area" name="message" maxlength="300" placeholder="Es. Così niente più &quot;cosa mangiamo stasera?&quot;"></textarea>
+          <p id="counter" class="counter" aria-live="polite">0/300</p>
+        </div>
+        <button id="buy-btn" class="btn-primary" type="submit">Regala Kumino · 29,99 €</button>
+        <p class="pay-note">Paghi con carta, Apple Pay o Google Pay sulla pagina sicura di Stripe.</p>
+        <p id="buy-error" class="error hidden" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card faq">
+      <h2>Domande frequenti</h2>
+      <details>
+        <summary>Quanto dura?</summary>
+        <p>Un anno di Kumino Premium, a partire dal giorno in cui il codice viene riscattato.</p>
+      </details>
+      <details>
+        <summary>Si rinnova?</summary>
+        <p>No. Paghi una volta sola: alla fine dell'anno non viene addebitato nulla e il Premium non si rinnova da solo.</p>
+      </details>
+      <details>
+        <summary>Entro quando va usato?</summary>
+        <p>Quando vuoi: il codice resta valido finché non viene riscattato.</p>
+      </details>
+      <details>
+        <summary>Funziona su iPhone e Android?</summary>
+        <p>Sì, funziona sia su iPhone sia su Android.</p>
+      </details>
+      <details>
+        <summary>Chi è già abbonato può usarlo?</summary>
+        <p>Sì. Se hai già Kumino Premium, l'anno si somma.</p>
+      </details>
+      <details>
+        <summary>Come si paga?</summary>
+        <p>Con carta, Apple Pay o Google Pay, tramite la pagina di pagamento sicura di Stripe.</p>
+      </details>
+      <details>
+        <summary>Ho perso il codice?</summary>
+        <p>Lo trovi nell'email di conferma dell'acquisto. Se non la trovi, scrivici a <a href="mailto:kumino.apps@gmail.com">kumino.apps@gmail.com</a>.</p>
+      </details>
+    </section>
+
+    <p class="small-notes">Prezzo IVA inclusa<br>
+      <a href="terms.html">Termini di utilizzo</a> · <a href="privacy.html">Privacy Policy</a></p>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Kumino &nbsp;|&nbsp;
+  <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+  <a href="terms.html">Termini di utilizzo</a> &nbsp;|&nbsp;
+  <a href="delete.html">Eliminazione dei dati</a> &nbsp;|&nbsp;
+  <a href="mailto:kumino.apps@gmail.com">Contatti</a></p>
+</footer>
+
+<script>
+(function () {
+  var CONFIG = window.KUMINO_CONFIG;
+  var PARAMS = new URLSearchParams(location.search);
+  var MOCK = PARAMS.get('mock') === '1';
+  var BUY_LABEL = 'Regala Kumino · 29,99 €';
+  var GENERIC_ERROR = 'Si è verificato un errore. Riprova tra qualche minuto.';
+  var NETWORK_ERROR = 'Impossibile contattare il server. Controlla la connessione e riprova.';
+  var MESSAGE_MAX = 300;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function showError(message) {
+    $('buy-error').textContent = message;
+    $('buy-error').classList.toggle('hidden', !message);
+  }
+
+  function setLoading(loading) {
+    var btn = $('buy-btn');
+    btn.disabled = loading;
+    btn.textContent = '';
+    if (loading) {
+      var spinner = document.createElement('span');
+      spinner.className = 'spinner';
+      spinner.setAttribute('aria-hidden', 'true');
+      btn.append(spinner, 'Un attimo…');
+    } else {
+      btn.textContent = BUY_LABEL;
+    }
+  }
+
+  function closeShop() {
+    $('shop-closed').classList.remove('hidden');
+    $('buy-btn').disabled = true;
+    $('buy-btn').textContent = BUY_LABEL;
+    showError('');
+  }
+
+  /* ---------- CHECKOUT ---------- */
+
+  // Contratto del server (POST /api/shop/giftcard/checkout):
+  //   richiesta { recipientName?, message? }
+  //   200 { url }  pagina di pagamento Stripe
+  //   503 { reason: "shop_disabled" }
+  function checkoutRequest(body) {
+    if (MOCK) return mockCheckout(body);
+    return fetch(CONFIG.API_BASE.replace(/\/$/, '') + '/api/shop/giftcard/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        return { ok: res.ok, status: res.status, data: data };
+      });
+    });
+  }
+
+  function mockCheckout(body) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        if (PARAMS.get('shop') === 'off') {
+          resolve({ ok: false, status: 503, data: { reason: 'shop_disabled' } });
+        } else if ((body.recipientName || '').toUpperCase() === 'RETE') {
+          reject(new TypeError('Failed to fetch'));
+        } else {
+          // La pagina di conferma in mock mostra i dati inseriti qui.
+          try { sessionStorage.setItem('kumino_mock_order', JSON.stringify(body)); } catch (e) {}
+          var session = body.recipientName || body.message ? 'mock_paid' : 'mock_paid_anon';
+          resolve({ ok: true, status: 200, data: { url: 'regala-grazie.html?mock=1&session_id=' + session } });
+        }
+      }, 900);
+    });
+  }
+
+  $('message').addEventListener('input', function () {
+    var len = $('message').value.length;
+    $('counter').textContent = len + '/' + MESSAGE_MAX;
+    $('counter').classList.toggle('full', len >= MESSAGE_MAX);
+  });
+
+  $('gift-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if ($('buy-btn').disabled) return;
+
+    var body = {};
+    var name = $('recipient').value.trim().slice(0, 60);
+    var message = $('message').value.trim().slice(0, MESSAGE_MAX);
+    if (name) body.recipientName = name;
+    if (message) body.message = message;
+
+    showError('');
+    setLoading(true);
+
+    checkoutRequest(body)
+      .then(function (res) {
+        if (res.data.reason === 'shop_disabled') return closeShop();
+        if (res.ok && res.data.url) {
+          location.href = res.data.url;
+          return;
+        }
+        setLoading(false);
+        showError(res.data.error || GENERIC_ERROR);
+      })
+      .catch(function () {
+        setLoading(false);
+        showError(NETWORK_ERROR);
+      });
+  });
+
+  // Tornando indietro da Stripe il browser può ripristinare la pagina con lo spinner attivo.
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted && $('shop-closed').classList.contains('hidden')) setLoading(false);
+  });
+
+  if (PARAMS.get('annullato') === '1') {
+    $('cancel-banner').classList.remove('hidden');
+    $('cancel-close').addEventListener('click', function () {
+      $('cancel-banner').classList.add('hidden');
+    });
+  }
+
+  if (MOCK) $('mock-banner').classList.remove('hidden');
+})();
+</script>
+
+</body>
+</html>
